@@ -5,12 +5,11 @@ import encode
 def made_inverse_key(key):
     result = ''
     for char in key:
-        result += help_lib.all_symbols[help_lib.len_all_symbols - help_lib.dict_symbols[char]]
+        result += help_lib.all_symbols[-help_lib.dict_symbols[char] % help_lib.len_all_symbols]
     return result
 
 
 def decode(args):
-    print(help_lib.len_all_symbols)
     input_file = help_lib.clever_open(args.input_file, "r")
     output_file = help_lib.clever_open(args.output_file, "w")
 

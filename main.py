@@ -52,8 +52,11 @@ main()
 
 # python3 main.py encode --input_file russian_for_encode.txt --output_file russian_encode.txt --cipher caesar --key 10
 # python3 main.py decode --input_file russian_encode.txt --output_file russian_decode.txt --cipher caesar --key 10
-# python3 main.py hack --input_file russian_encode.txt --output_file russian_hack.txt --probability_file russian_probability.json
+# python3 main.py hack --input_file russian_encode.txt --output_file russian_hack.txt --probability_file
+# russian_probability.json
 # python3 main.py probability --input_file russian_file_for_prob.txt --output_file russian_probability.json
 
-# python3 main.py encode --input_file russian_for_encode.txt --output_file russian_encode_vigenere.txt --cipher vigenere --key боба
-# python3 main.py decode --input_file russian_encode_vigenere.txt --output_file russian_decode_vigenere.txt --cipher vigenere --key боба
+# python3 main.py encode --input_file russian_for_encode.txt --output_file russian_encode_vigenere.txt --cipher vigenere
+# --key боба
+# python3 main.py decode --input_file russian_encode_vigenere.txt --output_file russian_decode_vigenere.txt --cipher
+# vigenere --key боба
