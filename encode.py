@@ -1,12 +1,12 @@
-import help_lib
+from help_lib import *
 
 
 def caesar(line, key):
     result = ''
     for char in line:
-        if char in help_lib.all_symbols:
-            index = (help_lib.dict_symbols[char] + key) % help_lib.len_all_symbols
-            result += help_lib.all_symbols[index]
+        if char in SET_ALL_SYMBOLS:
+            index = (SYMBOL_TO_IND[char] + key) % LEN_ALL_SYMBOLS
+            result += TUPLE_ALL_SYMBOLS[index]
         else:
             result += char
     return result
@@ -14,15 +14,15 @@ def caesar(line, key):
 
 def vigenere(line, key):
     result = ''
-    for i in range(len(line)):
-        if line[i] in help_lib.all_symbols:
-            index_line = help_lib.dict_symbols[line[i]]
-            index_key = help_lib.dict_symbols[key[i % len(key)]]
-            index = (index_line + index_key) % help_lib.len_all_symbols
+    for index_char_in_line, char_lines in enumerate(line):
+        if char_lines in SET_ALL_SYMBOLS:
+            index_in_list_all_symbols = SYMBOL_TO_IND[char_lines]
+            index_key_in_list_all_symbols = SYMBOL_TO_IND[key[index_char_in_line % len(key)]]
+            index_char_in_encode = (index_in_list_all_symbols + index_key_in_list_all_symbols) % LEN_ALL_SYMBOLS
 
-            result += help_lib.all_symbols[index]
+            result += TUPLE_ALL_SYMBOLS[index_char_in_encode]
         else:
-            result += line[i]
+            result += char_lines
     return result
 
 
@@ -33,13 +33,9 @@ def encode_file(input_file, output_file, key, func_for_encode):
 
 
 def encode(args):
-    input_file = help_lib.clever_open(args.input_file, "r")
-    output_file = help_lib.clever_open(args.output_file, "w")
-
-    if args.cipher == 'caesar':
-        encode_file(input_file, output_file, int(args.key), caesar)
-    elif args.cipher == 'vigenere':
-        encode_file(input_file, output_file, str(args.key), vigenere)
-
-    input_file.close()
-    output_file.close()
+    with CleverOpenFile(args.input_file, "r") as input_file:
+        with CleverOpenFile(args.output_file, "w") as output_file:
+            if args.cipher == 'caesar':
+                encode_file(input_file, output_file, int(args.key), caesar)
+            elif args.cipher == 'vigenere':
+                encode_file(input_file, output_file, args.key, vigenere)

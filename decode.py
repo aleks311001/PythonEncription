@@ -1,23 +1,16 @@
-import help_lib
+from help_lib import *
 import encode
 
 
 def made_inverse_key(key):
-    result = ''
-    for char in key:
-        result += help_lib.all_symbols[-help_lib.dict_symbols[char] % help_lib.len_all_symbols]
-    return result
+    return "".join(TUPLE_ALL_SYMBOLS[-SYMBOL_TO_IND[char] % LEN_ALL_SYMBOLS] for char in key)
 
 
 def decode(args):
-    input_file = help_lib.clever_open(args.input_file, "r")
-    output_file = help_lib.clever_open(args.output_file, "w")
-
-    if args.cipher == 'caesar':
-        encode.encode_file(input_file, output_file, -int(args.key), encode.caesar)
-    elif args.cipher == 'vigenere':
-        key = made_inverse_key(args.key)
-        encode.encode_file(input_file, output_file, key, encode.vigenere)
-
-    input_file.close()
-    output_file.close()
+    with CleverOpenFile(args.input_file, "r") as input_file:
+        with CleverOpenFile(args.output_file, "w") as output_file:
+            if args.cipher == 'caesar':
+                encode.encode_file(input_file, output_file, -int(args.key), encode.caesar)
+            elif args.cipher == 'vigenere':
+                key = made_inverse_key(args.key)
+                encode.encode_file(input_file, output_file, key, encode.vigenere)
