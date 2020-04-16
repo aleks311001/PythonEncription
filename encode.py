@@ -1,4 +1,4 @@
-from help_lib import *
+from help_lib import SET_ALL_SYMBOLS, SYMBOL_TO_IND, TUPLE_ALL_SYMBOLS, LEN_ALL_SYMBOLS, CleverOpenFile
 
 
 def caesar(line, key):
@@ -33,9 +33,10 @@ def encode_file(input_file, output_file, key, func_for_encode):
 
 
 def encode(args):
-    with CleverOpenFile(args.input_file, "r") as input_file:
-        with CleverOpenFile(args.output_file, "w") as output_file:
-            if args.cipher == 'caesar':
-                encode_file(input_file, output_file, int(args.key), caesar)
-            elif args.cipher == 'vigenere':
-                encode_file(input_file, output_file, args.key, vigenere)
+    with CleverOpenFile(args.input_file, "r") as input_file, CleverOpenFile(args.output_file, "w") as output_file:
+        if args.cipher == 'caesar':
+            encode_file(input_file, output_file, int(args.key), caesar)
+        elif args.cipher == 'vigenere':
+            encode_file(input_file, output_file, args.key, vigenere)
+        else:
+            raise ValueError

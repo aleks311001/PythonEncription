@@ -21,12 +21,12 @@ class CleverOpenFile:
             elif self.mode == "w":
                 return sys.stdout
             else:
-                return None
+                raise ValueError
         else:
             self.file = open(self.file_name, self.mode)
             return self.file
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.file_name:
+        if not self.file_name is None:
             self.file.close()
         return False
