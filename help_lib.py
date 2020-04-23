@@ -1,8 +1,7 @@
 import string
 import sys
 
-TUPLE_ALL_SYMBOLS = tuple(string.ascii_letters) + \
-                    tuple('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ') + \
+TUPLE_ALL_SYMBOLS = tuple(string.ascii_letters) +                  tuple('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ') + \
                     tuple(string.punctuation)
 SET_ALL_SYMBOLS = set(TUPLE_ALL_SYMBOLS)
 LEN_ALL_SYMBOLS = len(TUPLE_ALL_SYMBOLS)
