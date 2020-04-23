@@ -1,5 +1,5 @@
 import json
-from help_lib import SET_ALL_SYMBOLS, TUPLE_ALL_SYMBOLS
+from help_lib import SET_ALL_SYMBOLS
 from collections import defaultdict
 
 
@@ -19,8 +19,6 @@ def make_normalize_counts(dict_prob):
 
 def calc_probability(args):
     dict_prob = defaultdict(float)
-    for char in TUPLE_ALL_SYMBOLS:
-        dict_prob[char] = 0
 
     with open(args.input_file, 'r') as file:
         for line in file:

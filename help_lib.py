@@ -6,7 +6,12 @@ TUPLE_ALL_SYMBOLS = tuple(string.ascii_letters) + \
                     tuple(string.punctuation)
 SET_ALL_SYMBOLS = set(TUPLE_ALL_SYMBOLS)
 LEN_ALL_SYMBOLS = len(TUPLE_ALL_SYMBOLS)
-SYMBOL_TO_IND = {TUPLE_ALL_SYMBOLS[i]: i for i in range(LEN_ALL_SYMBOLS)}
+SYMBOL_TO_IND = {c: j for j, c in enumerate(TUPLE_ALL_SYMBOLS)}
+
+
+def move_symbol(char, move):
+    index = (SYMBOL_TO_IND[char] + move) % LEN_ALL_SYMBOLS
+    return TUPLE_ALL_SYMBOLS[index]
 
 
 class CleverOpenFile:
@@ -27,6 +32,6 @@ class CleverOpenFile:
             return self.file
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if not self.file_name is None:
+        if self.file_name is not None:
             self.file.close()
         return False

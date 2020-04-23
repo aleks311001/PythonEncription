@@ -1,29 +1,28 @@
-from help_lib import SET_ALL_SYMBOLS, SYMBOL_TO_IND, TUPLE_ALL_SYMBOLS, LEN_ALL_SYMBOLS, CleverOpenFile
+from help_lib import SET_ALL_SYMBOLS, SYMBOL_TO_IND, CleverOpenFile, move_symbol
+
+
+def transform_caesar_char(char, key):
+    if char in SET_ALL_SYMBOLS:
+        return move_symbol(char, key)
+    else:
+        return char
 
 
 def caesar(line, key):
-    result = ''
-    for char in line:
-        if char in SET_ALL_SYMBOLS:
-            index = (SYMBOL_TO_IND[char] + key) % LEN_ALL_SYMBOLS
-            result += TUPLE_ALL_SYMBOLS[index]
-        else:
-            result += char
-    return result
+    return "".join(transform_caesar_char(char, key) for char in line)
+
+
+def transform_vigenere_char(char, index_char, key):
+    if char in SET_ALL_SYMBOLS:
+        index_key_in_list_all_symbols = SYMBOL_TO_IND[key[index_char % len(key)]]
+
+        return move_symbol(char, index_key_in_list_all_symbols)
+    else:
+        return char
 
 
 def vigenere(line, key):
-    result = ''
-    for index_char_in_line, char_lines in enumerate(line):
-        if char_lines in SET_ALL_SYMBOLS:
-            index_in_list_all_symbols = SYMBOL_TO_IND[char_lines]
-            index_key_in_list_all_symbols = SYMBOL_TO_IND[key[index_char_in_line % len(key)]]
-            index_char_in_encode = (index_in_list_all_symbols + index_key_in_list_all_symbols) % LEN_ALL_SYMBOLS
-
-            result += TUPLE_ALL_SYMBOLS[index_char_in_encode]
-        else:
-            result += char_lines
-    return result
+    return "".join(transform_vigenere_char(char, index_char, key) for index_char, char in enumerate(line))
 
 
 def encode_file(input_file, output_file, key, func_for_encode):
