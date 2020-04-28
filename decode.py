@@ -1,9 +1,9 @@
-from help_lib import TUPLE_ALL_SYMBOLS, SYMBOL_TO_IND, LEN_ALL_SYMBOLS, CleverOpenFile
+from help_lib import STR_ALL_SYMBOLS, SYMBOL_TO_IND, LEN_ALL_SYMBOLS, CleverOpenFile
 import encode
 
 
 def made_inverse_key(key):
-    return "".join(TUPLE_ALL_SYMBOLS[-SYMBOL_TO_IND[char] % LEN_ALL_SYMBOLS] for char in key)
+    return "".join(STR_ALL_SYMBOLS[-SYMBOL_TO_IND[char] % LEN_ALL_SYMBOLS] for char in key)
 
 
 def decode(args):

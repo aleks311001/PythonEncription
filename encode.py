@@ -1,8 +1,8 @@
-from help_lib import SET_ALL_SYMBOLS, SYMBOL_TO_IND, CleverOpenFile, move_symbol
+from help_lib import SYMBOL_TO_IND, CleverOpenFile, move_symbol
 
 
 def transform_caesar_char(char, key):
-    if char in SET_ALL_SYMBOLS:
+    if char in SYMBOL_TO_IND:
         return move_symbol(char, key)
     else:
         return char
@@ -13,7 +13,7 @@ def caesar(line, key):
 
 
 def transform_vigenere_char(char, index_char, key):
-    if char in SET_ALL_SYMBOLS:
+    if char in SYMBOL_TO_IND:
         index_key_in_list_all_symbols = SYMBOL_TO_IND[key[index_char % len(key)]]
 
         return move_symbol(char, index_key_in_list_all_symbols)

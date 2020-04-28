@@ -1,12 +1,12 @@
 import json
-from help_lib import SET_ALL_SYMBOLS
+from help_lib import SYMBOL_TO_IND
 from collections import defaultdict
 
 
 def calc_only_correct_chars_in_line(dict_prob, strings):
     strings = strings
     for char in strings:
-        if char in SET_ALL_SYMBOLS:
+        if char in SYMBOL_TO_IND:
             dict_prob[char] += 1
 
 

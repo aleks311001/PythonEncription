@@ -1,16 +1,17 @@
 import string
 import sys
 
-TUPLE_ALL_SYMBOLS = tuple(string.ascii_letters) +                  tuple('АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ') + \
-                    tuple(string.punctuation)
-SET_ALL_SYMBOLS = set(TUPLE_ALL_SYMBOLS)
-LEN_ALL_SYMBOLS = len(TUPLE_ALL_SYMBOLS)
-SYMBOL_TO_IND = {c: j for j, c in enumerate(TUPLE_ALL_SYMBOLS)}
+RUSSIAN_ALPHABET = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+STR_ALL_SYMBOLS = str(string.ascii_letters) + \
+                  RUSSIAN_ALPHABET.upper() + RUSSIAN_ALPHABET + ' ' + \
+                  str(string.punctuation)
+LEN_ALL_SYMBOLS = len(STR_ALL_SYMBOLS)
+SYMBOL_TO_IND = {c: j for j, c in enumerate(STR_ALL_SYMBOLS)}
 
 
 def move_symbol(char, move):
     index = (SYMBOL_TO_IND[char] + move) % LEN_ALL_SYMBOLS
-    return TUPLE_ALL_SYMBOLS[index]
+    return STR_ALL_SYMBOLS[index]
 
 
 class CleverOpenFile:

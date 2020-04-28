@@ -21,13 +21,13 @@ def find_probability(input_file):
 def distance(real_prob, our_prob, key):
     dist = 0
     for coordinate_name in set(real_prob.keys()) | set(our_prob.keys()):
-        dist += (real_prob[coordinate_name] - our_prob[move_symbol(coordinate_name, key)]) ** 2
+        dist += (real_prob.get(coordinate_name, 0) - our_prob.get(move_symbol(coordinate_name, key), 0)) ** 2
     return dist
 
 
 def hack(args):
     with open(args.probability_file, 'r') as file:
-        real_probability = defaultdict(float, json.load(file))
+        real_probability = json.load(file)
 
     our_probability = find_probability(args.input_file)
 
