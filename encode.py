@@ -7,6 +7,7 @@ def transform_caesar_char(char, key, index_char):
     else:
         return char
 
+
 def transform_vigenere_char(char, key, index_char):
     if char in SYMBOL_TO_IND:
         index_key_in_list_all_symbols = SYMBOL_TO_IND[key[index_char % len(key)]]
@@ -16,13 +17,13 @@ def transform_vigenere_char(char, key, index_char):
         return char
 
 
-def encrypt(transform_char, line, key):
+def encode_line(transform_char, line, key):
     return "".join(transform_char(char, key, index_char) for index_char, char in enumerate(line))
 
 
 def encode_file(input_file, output_file, key, func_for_encode_char):
     for line in input_file:
-        new_line = encrypt(func_for_encode_char, line, key)
+        new_line = encode_line(func_for_encode_char, line, key)
         output_file.write(new_line)
 
 

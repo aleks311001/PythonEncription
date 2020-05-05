@@ -9,7 +9,7 @@ def made_inverse_key(key):
 def decode(args):
     with CleverOpenFile(args.input_file, "r") as input_file, CleverOpenFile(args.output_file, "w") as output_file:
         if args.cipher == 'caesar':
-            encode.encode_file(input_file, output_file, -int(args.key), encode.caesar)
+            encode.encode_file(input_file, output_file, -int(args.key), encode.transform_caesar_char)
         elif args.cipher == 'vigenere':
             key = made_inverse_key(args.key)
-            encode.encode_file(input_file, output_file, key, encode.vigenere)
+            encode.encode_file(input_file, output_file, key, encode.transform_vigenere_char)

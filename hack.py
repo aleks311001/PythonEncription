@@ -42,4 +42,4 @@ def hack(args):
             min_key = key
 
     with open(args.input_file, 'r') as input_file, open(args.output_file, 'w') as output_file:
-        encode.encode_file(input_file, output_file, min_key, encode.caesar)
+        encode.encode_file(input_file, output_file, min_key, encode.transform_caesar_char)
