@@ -21,7 +21,8 @@ def find_probability(input_file):
 def distance(real_prob, our_prob, key):
     dist = 0
     for coordinate_name in set(real_prob.keys()) | set(our_prob.keys()):
-        dist += (real_prob.get(coordinate_name, 0) - our_prob.get(move_symbol(coordinate_name, key), 0)) ** 2
+        coordinate_our_symbol = move_symbol(coordinate_name, key)
+        dist += (real_prob.get(coordinate_name, 0) - our_prob.get(coordinate_our_symbol, 0)) ** 2
     return dist
 
 

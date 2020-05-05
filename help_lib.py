@@ -6,7 +6,7 @@ STR_ALL_SYMBOLS = str(string.ascii_letters) + \
                   RUSSIAN_ALPHABET.upper() + RUSSIAN_ALPHABET + ' ' + \
                   str(string.punctuation)
 LEN_ALL_SYMBOLS = len(STR_ALL_SYMBOLS)
-SYMBOL_TO_IND = {c: j for j, c in enumerate(STR_ALL_SYMBOLS)}
+SYMBOL_TO_IND = {char: ind for ind, char in enumerate(STR_ALL_SYMBOLS)}
 
 
 def move_symbol(char, move):
